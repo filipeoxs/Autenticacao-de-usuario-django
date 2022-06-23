@@ -27,9 +27,19 @@
             <!--Login-->
             <div>
                 <ul class="navbar-nav">
+                    <!--Se o usuário estiver logado, o sistema vai informar que ele está logado-->
+                    <!--a variável "user" não precisa ser enviada pela view, já vem incluida no form -->
+                    {% if user.is_authenticated %}
+                    <span class="navbar-text">Logged in as {{user.username}} | </span>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                    <!--Se ele não estiver logado, o sistema exibirá somente o botão de login-->
+                    {% else %}
                     <li class="nav-item">
                         <a href="/login" class="nav-link">Login</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

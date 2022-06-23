@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+from .keys import *
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ub_&k48p^$1^cl#=u_w##j$g&2t4zqz&_0bb56q5d4h%rb5!%j'
+SECRET_KEY = KEY_DJANGO
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-auth-users.azurewebsites.net']
+#Inserindo o host da Azure
+ALLOWED_HOSTS = [
+    'django-auth-users.azurewebsites.net',
+    '127.0.0.1'
+                 ]
 
 
 # Application definition
@@ -83,10 +91,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd35v04fth8moq7',
-        'USER': 'srlhssghumkjtj',
-        'PASSWORD': '764c4fec3bd1d103ea828523d19d33304781968083eb6804d75d64ec82156e62',
-        'HOST': 'ec2-44-197-128-108.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'USER': USER_DB,
+        'PASSWORD': KEY_DB,
+        'HOST': HOST_DB,
+        'PORT': PORT_DB
     }
 }
 
@@ -131,3 +139,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Após o usuário ter logado o sistema vai redirecionar para a url /home
+LOGIN_REDIRECT_URL = '/home'
+
+#Após o usuário ter feito o logoff o sistema vai redirecionar para a url /login
+LOGOUT_REDIRECT_URL = '/login'
