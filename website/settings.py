@@ -31,7 +31,8 @@ DEBUG = True
 
 #Inserindo o host da Azure
 ALLOWED_HOSTS = [
-    'django-auth-users.azurewebsites.net',
+    'https://django-auth-users.azurewebsites.net',
+    
     '127.0.0.1'
                  ]
 
